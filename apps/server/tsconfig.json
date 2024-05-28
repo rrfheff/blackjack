@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "display": "server",
+  "compilerOptions": {
+    "target": "es2020",
+    "module": "commonjs",
+    "lib": ["ES2020"],
+    "declaration": false,
+    "strict": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "moduleResolution": "node",
+    "outDir": "dist",
+    "baseUrl": "./",
+    "paths": {
+      "@server/*": ["./src/*"]
+    }
+  },
+  "include": ["src"],
+  "ts-node": {
+    "transpileOnly": true
+  }
+}

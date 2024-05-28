@@ -1,0 +1,51 @@
+{
+  "name": "server",
+  "version": "0.11.0",
+  "main": "index.js",
+  "license": "MIT",
+  "engines": {
+    "node": ">=14"
+  },
+  "scripts": {
+    "dev": "gulp",
+    "build": "rimraf dist && tsc && tsc-alias",
+    "lint": "pwd",
+    "lint:fix": "eslint src --fix",
+    "sonar": "echo 'sonar'",
+    "start": "node ./dist/index.js"
+  },
+  "dependencies": {
+    "@types/lodash": "^4.17.0",
+    "@types/uuid": "^9.0.8",
+    "axios": "^1.2.6",
+    "axios-logger": "^2.6.2",
+    "bcrypt": "^5.1.1",
+    "body-parser": "^1.20.1",
+    "express": "^4.18.2",
+    "express-http-context": "^1.2.4",
+    "lodash": "^4.17.21",
+    "morgan": "^1.10.0",
+    "otpauth": "^9.2.3",
+    "require-directory": "^2.1.1",
+    "uuid": "^9.0.1",
+    "winston": "^3.12.0"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.16",
+    "@types/morgan": "^1.9.4",
+    "@types/node": "^14.18.0",
+    "@types/require-directory": "^2.1.6",
+    "dotenv": "^16.0.1",
+    "eslint-config-custom": "*",
+    "gulp": "^4.0.2",
+    "gulp-path-alias": "^1.2.1",
+    "gulp-typescript": "^6.0.0-alpha.1",
+    "nodemon": "^2.0.19",
+    "rimraf": "^3.0.2",
+    "ts-node": "^10.9.1",
+    "tsc-alias": "^1.7.0",
+    "tsconfig": "*",
+    "tsconfig-paths": "^4.1.0",
+    "typescript": "^4.7.4"
+  }
+}
