@@ -50,7 +50,7 @@ const Index = () => {
   const onFinish = () => {
     setDone(true);
     const eventSource = new EventSource(
-      `http://test.com/poker/finish?gameId=${gameId}&userName=${window.userName}`,
+      `http://www.w23kg7.top:8439/poker/finish?gameId=${gameId}&userName=${window.userName}`,
     );
     eventSource.onmessage = function (event) {
       setRank(parseInt(event.data, 10));
@@ -85,7 +85,7 @@ const Index = () => {
         onClick={() => {
           setLoading(true);
           fetch(
-            `http://test.com/poker/get?gameId=${gameId}&userName=${window.userName}`,
+            `http://www.w23kg7.top:8439/poker/get?gameId=${gameId}&userName=${window.userName}`,
           )
             .then(r => r.json())
             .then(r => {
@@ -124,7 +124,7 @@ const Index = () => {
             } as any);
 
             const eventSource = new EventSource(
-              `http://test.com/poker/ready?gameId=${newGameId}&userName=${window.userName}`,
+              `http://www.w23kg7.top:8439/poker/ready?gameId=${newGameId}&userName=${window.userName}`,
             );
             eventSource.onmessage = function (event) {
               if (event.data === 'ready') {

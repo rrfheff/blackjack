@@ -33,7 +33,7 @@ const Index = () => {
           setReady(true);
           window.userName = name;
           const eventSource = new EventSource(
-            `http://test.com/poker/ready?gameId=${gameId}&userName=${name}`,
+            `http://www.w23kg7.top:8439/poker/ready?gameId=${gameId}&userName=${name}`,
           );
           eventSource.onmessage = function (event) {
             if (event.data === 'ready') {

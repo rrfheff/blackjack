@@ -2,13 +2,15 @@ import morgan from 'morgan';
 import express, { Request, Response, NextFunction } from 'express';
 // @ts-expect-error
 import bodyParser from 'body-parser';
+import cors from 'cors';
 import requireDirectory from 'require-directory';
 import { flattenObject } from './utils/common';
 
 const app = express();
 
 // Express configuration
-app.set('port', process.env.PORT || 3001);
+app.use(cors());
+app.set('port', process.env.PORT || 8439);
 app.disable('x-powered-by');
 app.set('etag', 'strong');
 app.use(bodyParser.json());

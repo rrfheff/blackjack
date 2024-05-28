@@ -30,10 +30,10 @@ const Index = () => {
         variant="contained"
         color="primary"
         onClick={() => {
-          fetch(`http://test.com/poker/start?gameId=${id}`);
+          fetch(`http://www.w23kg7.top:8439/poker/start?gameId=${id}`);
           setTimeout(() => {
             const eventSource = new EventSource(
-              `http://test.com/poker/getResult?gameId=${id}`,
+              `http://www.w23kg7.top:8439/poker/getResult?gameId=${id}`,
             );
             eventSource.onmessage = function (event) {
               setRankList(JSON.parse(event.data));
