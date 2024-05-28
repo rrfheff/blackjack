@@ -39,19 +39,6 @@ Object.entries(apiPath).forEach(([key, value]) => {
   app[method](`/${path}`, value);
 });
 
-app.get('/getResult', (req, res) => {
-  res.set({
-    'Cache-Control': 'no-cache',
-    'Content-Type': 'text/event-stream',
-    Connection: 'keep-alive',
-  });
-  res.flushHeaders();
-  // Send an event every second
-  setTimeout(() => {
-    res.write(`data: ${new Date().toISOString()}\n\n`);
-  }, 1000);
-});
-
 /**
  * Start Express server.
  */

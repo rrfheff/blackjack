@@ -7,7 +7,9 @@ const Index = () => {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const gameId = searchParams.get('gameid');
-  const [name, setName] = useState<string>('');
+  const [name, setName] = useState<string>(
+    localStorage.getItem('demo-game-21') || '',
+  );
   const [ready, setReady] = useState(false);
   return (
     <div className="flex items-center justify-center w-full flex-col">
@@ -16,7 +18,10 @@ const Index = () => {
         label="Your Name"
         variant="outlined"
         value={name}
-        onChange={e => setName(e.target.value)}
+        onChange={e => {
+          setName(e.target.value);
+          localStorage.setItem('demo-game-21', e.target.value);
+        }}
       />
       <LoadingButton
         className="mt-32"

@@ -1,6 +1,7 @@
 import { Button } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { useSearchParams } from '@modern-js/runtime/router';
+import LoadingButton from '@mui/lab/LoadingButton';
 
 type Poker = {
   number: number;
@@ -41,7 +42,8 @@ const Index = () => {
   const [done, setDone] = useState(false);
   const [rank, setRank] = useState(0);
   const [pokerList, setPokerList] = useState<Poker[]>([]);
-  const [searchParams] = useSearchParams();
+  const [ready, setReady] = useState(false);
+  const [searchParams, setSearchParams] = useSearchParams();
   const gameId = searchParams.get('gameid');
   const score = pokerList.reduce((acc, cur) => acc + cur.number, 0);
   const over = score > 21;
@@ -101,11 +103,42 @@ const Index = () => {
         className="mt-32"
         variant="contained"
         color="primary"
-        disabled={loading || over}
+        disabled={loading || over || done}
         onClick={onFinish}
       >
         Finish
       </Button>
+      {done && (
+        <LoadingButton
+          className="mt-32"
+          variant="contained"
+          color="primary"
+          loading={ready}
+          disabled={ready || !gameId}
+          onClick={() => {
+            const newGameId = `${searchParams.get('gameid')}1`;
+            setReady(true);
+            setSearchParams({
+              ...searchParams,
+              gameid: newGameId,
+            } as any);
+
+            const eventSource = new EventSource(
+              `http://test.com/poker/ready?gameId=${newGameId}&userName=${window.userName}`,
+            );
+            eventSource.onmessage = function (event) {
+              if (event.data === 'ready') {
+                setReady(false);
+                setDone(false);
+                setRank(0);
+                setPokerList([]);
+              }
+            };
+          }}
+        >
+          Next Round
+        </LoadingButton>
+      )}
     </div>
   );
 };

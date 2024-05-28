@@ -115,7 +115,6 @@ export const finish = (key: string, userName: string) => {
   const { endStateStore } = store;
   endStateStore.set(userName, true);
   const gameEndState = gameEndStateStore.get(key)!;
-  console.log(Array.from(endStateStore.values()));
   if (Array.from(endStateStore.values()).every(Boolean)) {
     gameEndState.resolve!(true);
   }
@@ -143,4 +142,20 @@ export const getRanking = (key: string, userName: string) => {
       )
       .indexOf(score) + 1
   );
+};
+
+export const getResult = (key: string) => {
+  if (!gameEndStateStore.has(key)) {
+    gameEndStateStore.set(key, new Deferred());
+  }
+  const store = stateStore.get(key);
+  if (!store) {
+    throw new Error('Game not found');
+  }
+  const { scoreStore } = store;
+  const gameEndState = gameEndStateStore.get(key)!;
+  return {
+    gameEndState,
+    getRankList: () => Array.from(scoreStore.entries()),
+  };
 };
